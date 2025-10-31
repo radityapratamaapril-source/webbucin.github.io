@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Bucin - Cinta Abadi 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Animasi Hati */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 18px;
+            animation: float 6s ease-in-out infinite;
+        }
+        .heart:before,
+        .heart:after {
+            content: '';
+            width: 20px;
+            height: 30px;
+            position: absolute;
+            left: 10px;
+            transform: rotate(-45deg);
+            background: #ff6b9d;
+            border-radius: 20px 20px 0 0;
+            transform-origin: 0 100%;
+        }
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        /* Container Utama */
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        p {
+            font-size: 1.2em;
+            color: #fff;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        /* Music Player */
+        .music-player {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        audio {
+            width: 100%;
+            outline: none;
+        }
+        /* Section Card Romantis */
+        .romantic-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        .card:nth-child(7) { animation-delay: 0.7s; }
+        .card:nth-child(8) { animation-delay: 0.8s; }
+        .card:nth-child(9) { animation-delay: 0.9s; }
+        .card:nth-child(10) { animation-delay: 1.0s; }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(255, 107, 157, 0.3);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+        .card-text {
+            color: #fff;
+            font-size: 1.1em;
+            text-align: center;
+            padding: 20px;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        /* Button WA Floating */
+        .wa-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .wa-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        /* Responsif */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            p { font-size: 1em; }
+            .wa-button { width: 50px; height: 50px; font-size: 1.2em; }
+            .heart { width: 15px; height: 13px; }
+            .heart:before, .heart:after { width: 15px; height: 22px; left: 7px; }
+            .romantic-cards {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 20px 10px;
+            }
+            .card-text { font-size: 1em; padding: 15px; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .romantic-cards { grid-template-columns: repeat(2, 1fr); }
+        }
+        /* Generate Hati Animasi */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animasi Hati (JS akan generate multiple) -->
+    
+    <div class="container">
+        <h1>💕 Cinta Abadi 💕</h1>
+        <p>Kamu adalah alasan hatiku berdegup lebih kencang setiap hari. Mari kita ciptakan kenangan indah bersama, Kamu juga adalah orang ternyaman dan tersayang!</p>
+        
+        <!-- Music Player -->
+        <div class="music-player">
+            <h3 style="color: #fff; margin-bottom: 10px;">Lagu Romantis Kami 🎵</h3>
+            <audio controls>
+                <source src="penjaga-hati youtubemp3free.org.mp3" type="audio/mpeg">
+                Browser Anda mendukung audio. <a href="https://www.bensound.com/royalty-free-music/track/romantic">Download lagu di sini</a>.
+            </audio>
+        </div>
+    </div>
+
+    <!-- Section Card Romantis - 10 Card Total -->
+    <div class="romantic-cards">
+        <!-- Card 1-5 (Sebelumnya) -->
+        <div class="card">
+            <img src="bocill.jpg" alt="Foto Romantis 1">
+            <div class="card-overlay">
+                <p class="card-text">Kamu adalah mimpi yang menjadi nyata. 💭❤️</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="WhatsApp Image 2025-09-17 at 05.52.15_431089d3.jpg" alt="Foto Romantis 2">
+            <div class="card-overlay">
+                <p class="card-text">Setiap detik bersamamu adalah kebahagiaan. 😊💕</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="hyeyyyyyyy'.jpg" alt="Foto Romantis 3">
+            <div class="card-overlay">
+                <p class="card-text">Hatiku milikmu selamanya. ❤️🔒</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="das.jpg" alt="Foto Romantis 4">
+            <div class="card-overlay">
+                <p class="card-text">Cinta kita seperti bintang, abadi dan indah. ⭐✨</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="cantik 2.jpg" alt="Foto Romantis 5">
+            <div class="card-overlay">
+                <p class="card-text">Kamu membuat dunia ini lebih berwarna. 🌈💖</p>
+            </div>
+        </div>
+        <!-- Card 6-10 (Baru) -->
+        <div class="card">
+            <img src="wawwww.jpg" alt="Foto Romantis 6">
+            <div class="card-overlay">
+                <p class="card-text">Pelukmu adalah obat terbaik untuk hari burukku. 🤗❤️</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="ekhmmmmmmm.jpg" alt="Foto Romantis 7">
+            <div class="card-overlay">
+                <p class="card-text">Matahari terbit karena senyummu. ☀️😘</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="ekhmm.jpg" alt="Foto Romantis 8">
+            <div class="card-overlay">
+                <p class="card-text">Kita adalah dua hati yang saling melengkapi. 💑🔗</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="hmm.jpg" alt="Foto Romantis 9">
+            <div class="card-overlay">
+                <p class="card-text">Cinta ini takkan pernah pudar. 🌹💫</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="wowww.jpg" alt="Foto Romantis 10">
+            <div class="card-overlay">
+                <p class="card-text">Bersamamu, setiap hari menyenagkan bagiku. 🗺️💕</p>
+            </div>
+        </div>
+         <div class="card">
+            <img src="cantik 1.jpg" alt="Foto Romantis 7">
+            <div class="card-overlay">
+                <p class="card-text">Matahari terbit karena senyummu. ☀️😘</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="222.jpg" alt="Foto Romantis 8">
+            <div class="card-overlay">
+                <p class="card-text">Kita adalah dua hati yang saling melengkapi. 💑🔗</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button WA -->
+    <a href="https://wa.me/+6282298648028?text=Halo%20sayang!%20Aku%20rindu%20kamu%20💕" class="wa-button" target="_blank" rel="noopener noreferrer">
+        💬
+    </a>
+
+    <script>
+        // Generate Hati Animasi Secara Random
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        // Buat hati setiap 1-2 detik
+        setInterval(createHeart, 1500);
+
+        // Auto-play music (opsional, tapi browser mungkin block)
+        // document.querySelector('audio').play().catch(e => console.log('Auto-play blocked'));
+    </script>
+</body>
+</html>
